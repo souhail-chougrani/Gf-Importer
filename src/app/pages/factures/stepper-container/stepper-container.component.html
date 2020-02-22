@@ -1,0 +1,65 @@
+<nb-stepper orientation="horizontal">
+  <nb-step [label]="labelOne">
+    <ng-template #labelOne>Importer Excel</ng-template>
+    <!-- <div class="container" fxLayout="column" fxLayoutGap="5px">
+      <step-importation></step-importation>
+      <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="5px">
+        <button nbButton disabled nbStepperPrevious>Précédent</button>
+        <button nbButton nbStepperNext>Suivant</button>
+      </div>
+    </div> -->
+
+    <!-- FIXME: -->
+    <div class="container" fxLayout="column" fxLayoutGap="5px">
+      <step-validation></step-validation>
+      <!-- *ngIf="display_step2" -->
+      <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="5px">
+        <button nbButton nbStepperPrevious>Précédent</button>
+        <button nbButton nbStepperNext>Suivant</button>
+      </div>
+    </div>
+
+  </nb-step>
+  <nb-step [label]="labelTwo">
+    <ng-template #labelTwo>Choisir les colonnes</ng-template>
+    <div class="container" fxLayout="column" fxLayoutGap="5px">
+      <step-mapping-columns [SelectHeader]="SelectHeader"></step-mapping-columns>
+      <!-- *ngIf="display_step2" -->
+      <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="5px">
+        <button nbButton nbStepperPrevious>Précédent</button>
+        <button [disabled]="!AllRequiredColumnIsSelected" nbButton nbStepperNext
+          (click)="getFiltredData()">Suivant</button>
+      </div>
+    </div>
+  </nb-step>
+  <nb-step label="Thirdstep">
+    <ng-template #Thirdstep>Validation</ng-template>
+    <div class="container" fxLayout="column" fxLayoutGap="5px">
+      <step-validation></step-validation>
+      <!-- *ngIf="display_step2" -->
+      <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="5px">
+        <button nbButton nbStepperPrevious>Précédent</button>
+        <button nbButton nbStepperNext>Suivant</button>
+      </div>
+    </div>
+    <!-- ddd -->
+
+  </nb-step>
+  <nb-step label="Four">
+    <ng-template #Four>validation backend</ng-template>
+    <div class="container" fxLayout="column" fxLayoutGap="5px">
+      <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="5px">
+        <button nbButton nbStepperPrevious>Précédent</button>
+        <button nbButton nbStepperNext>Suivant</button>
+      </div>
+    </div>
+  </nb-step>
+
+</nb-stepper>
+
+
+<!-- 
+<step-importation #stepImportationRef></step-importation>
+
+<step-mapping-columns></step-mapping-columns> 
+-->

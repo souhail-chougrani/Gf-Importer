@@ -1,0 +1,124 @@
+<form (ngSubmit)="submitForm()" #form="ngForm">
+  <div class="row mb-3">
+    <div class="col-sm-12">
+      <div class="form-control-group">
+        <label class="label" for="input-code">Code:</label>
+        <input nbInput
+              fullWidth
+              autofocus
+              [readOnly]="isEdit"
+              [disabled]="isEdit"
+              [(ngModel)]="article.code"
+              #code="ngModel"
+              name="code"
+              type="text"
+              id="input-code"
+              placeholder="Code"
+              shape="round"
+              required
+              [status]="code.touched ? (code.invalid  ? 'danger' : 'success') : ''"
+        >
+        <ng-container *ngIf="code.invalid && code.touched ">
+          <p class="error-message" *ngIf="code.errors?.required">
+            code is required!
+          </p>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-sm-6">
+      <div class="form-control-group">
+        <label class="label" for="input-qte">Quantité:</label>
+        <input nbInput
+              fullWidth
+              min="0"
+              [(ngModel)]="article.quantite"
+              #quantite="ngModel"
+              name="quantite"
+              type="number"
+              id="input-qte"
+              placeholder="Quantité"
+              shape="round"
+              required
+              [status]="quantite.touched ? (quantite.invalid  ? 'danger' : 'success') : ''"
+        >
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-control-group">
+        <label class="label" for="input-designation">Désignation:</label>
+        <input nbInput
+              fullWidth
+              name="designation"
+              [(ngModel)]="article.designation"
+              #designation="ngModel"
+              type="text"
+              id="input-designation"
+              placeholder="Désignation"
+              shape="round"
+              required
+              [status]="designation.touched ? (designation.invalid  ? 'danger' : 'success') : ''"
+        >
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-sm-6">
+      <div class="form-control-group">
+        <label class="label" for="input-prixachat">Prix Achat:</label>
+        <input nbInput
+              fullWidth
+              appToCurrency
+              [(ngModel)]="article.prix_a"
+              #prix_a="ngModel"
+              name="prix_a"
+              min="0"
+              step="0.01"
+              type="number"
+              id="input-prixachat"
+              placeholder="Prix Achat"
+              shape="round"
+              required
+              [status]="prix_a.touched ? (prix_a.invalid  ? 'danger' : 'success') : ''"
+        >
+        
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-control-group">
+        <label class="label" for="input-prixvente">Prix de vante:</label>
+        <input nbInput
+              fullWidth
+              appToCurrency
+              [(ngModel)]="article.prix_v"
+              #prix_v="ngModel"
+              name="prix_v"
+              min="0"
+              step="0.01"
+              type="number"
+              id="input-prixvente"
+              placeholder="Prix de vente"
+              shape="round"
+              required
+              [status]="prix_v.touched ? (prix_v.invalid  ? 'danger' : 'success') : ''"
+        >
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="float-right">
+    <button nbButton
+            [status]="isEdit ? 'warning' : 'primary'"
+            [disabled]="!form.valid">
+      {{ isEdit ? 'Modifier' : 'Ajouter' }}
+    </button>
+    <button class="ml-2" nbButton outline status="info" (click)="closeModal()">
+      Annuler
+    </button>
+  </div>
+
+</form>

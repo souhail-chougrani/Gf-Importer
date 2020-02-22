@@ -1,0 +1,56 @@
+<!-- body -->
+
+<!-- <ul>
+  <li *ngFor="let item of rows">
+    {{item | json}}
+  </li>
+</ul> -->
+
+<div [formGroup]="form">
+  <div formArrayName="rowsForm">
+    <ngx-datatable class="material fullscreen " [rows]="rows" [columnMode]="displayMode" [headerHeight]="70"
+      [footerHeight]="0" [rowHeight]="200" [scrollbarV]="true " [draggable]="true">
+
+      <ng-container *ngFor="let column of columns; let i = index">
+
+        <ngx-datatable-column [resizeable]="false" [width]="200" [prop]="column?.name"
+          [headerTemplate]="column?.headerTemplate">
+          <ng-template let-column="column" let-value="value" let-rowIndex="rowIndex" ngx-datatable-cell-template
+            let-row="row">
+            <!-- <span *ngIf="!displayEdit"> -->
+            <!-- <ul *ngFor="let err of getColErr(column?.name,i)">
+          <li>{{err}}</li>
+        </ul> -->
+
+            <!-- </span> -->
+            <span>
+
+            </span>
+            <form formGroupName='{{rowIndex}}'>
+              <input [formControlName]="column?.name?.trim()" *ngIf="!displayEdit" autofocus
+                (blur)="updateValue($event, column.name,rowIndex)" type="text" [value]="value" />
+            </form>
+            <div>{{ getcontrol(rowIndex,column?.name?.trim()).value|json }}</div>
+            <div>{{ getcontrol(rowIndex,column?.name?.trim())?.message?.errors|json }}</div>
+          </ng-template>
+        </ngx-datatable-column>
+      </ng-container>
+    </ngx-datatable>
+  </div>
+</div>
+
+<ng-template #hdrTpl let-column="column">
+  <div class="template-hearder-container">
+    <div class="header-name">{{ column.name }}</div>
+    <div class="select-container" *ngIf="displaySelects">
+      <nb-select size="small" placeholder="Select" shape="round">
+        <nb-option (selectionChange)="addSelectHeader(ignorDefaut,column.name)" [value]="ignorDefaut">Ne pas importer
+        </nb-option>
+        <nb-option *ngFor="let option  of options ;let i=index" [value]="option"
+          (selectionChange)="addSelectHeader(option,column.name)" [disabled]="option?.disabled">
+          <span [ngClass]="{'required': option?.required}">{{option?.name}}</span>
+        </nb-option>
+      </nb-select>
+    </div>
+  </div>
+</ng-template>

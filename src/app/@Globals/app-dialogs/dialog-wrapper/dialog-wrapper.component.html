@@ -1,0 +1,29 @@
+<nb-card [accent]="config?.status">
+	<nb-card-header class="{{config?.status}}">
+		<nb-icon [icon]="config?.icon" class="mr-2"></nb-icon>
+		<span class="dialog-title">{{ config?.title}}</span>
+	</nb-card-header>
+	<nb-card-body>
+		<div class="content-wrapper">
+			{{ config?.message }}
+		</div>
+	</nb-card-body>
+	<nb-card-footer class="d-flex justify-content-between align-items-center">
+		<div>
+			<button *ngIf="config?.cancel" class="label" nbButton status="danger" (click)="submit('Annuler')">Annuler</button>
+		</div>
+		<div>
+			<button *ngFor="let b of config.buttons" 
+				[class.cancel]="!b.principal"
+				[class.btnSave]="b.principal"
+				class="ml-2"
+				nbButton 
+				[status]="b.principal ? config?.status : b.status"
+				size="small"
+				(click)="submit(b.retrunValue)"
+			>
+				{{ b.text }}
+			</button>
+		</div>
+	</nb-card-footer>
+</nb-card>

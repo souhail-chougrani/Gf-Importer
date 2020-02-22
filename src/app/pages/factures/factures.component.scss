@@ -1,0 +1,90 @@
+@import "../../@theme/styles/themes.scss";
+
+:host() {
+  height: 100%;
+  flex-direction: column;
+  box-sizing: border-box;
+  display: flex;
+  padding: 1rem;
+  background: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24);
+  border-radius: 10px;
+}
+
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+label {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 700;
+  padding: 0.375rem 0.875rem;
+  cursor: pointer;
+  color: #fff;
+}
+
+@include nb-install-component {
+  /deep/ nb-select.shape-rectangle.excel {
+    .select-button {
+      border: none !important;
+      border-radius: 0 !important;
+
+      &.placeholder {
+        color: nb-theme(select-option-text-color);
+        font-weight: 600;
+      }
+
+      &:focus {
+        box-shadow: none !important;
+      }
+    }
+  }
+}
+
+span.required {
+  color: nb-theme(color-danger-500);
+}
+
+td.selectBox-header {
+  border: 1px solid #c8c8c8;
+}
+
+span.ui-autocomplete {
+  input {
+    border-radius: none !important;
+  }
+}
+
+
+
+.fade-in {
+  -webkit-animation: fade-in 1.5s both;
+  animation: fade-in 1.5s both;
+}
+
+@-webkit-keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

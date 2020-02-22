@@ -1,0 +1,59 @@
+      <div *ngIf="!DisplayDragbleArea" fxLayout="column" style="height: 100%;" fxLayoutGap="10px">
+        <div fxFlex="7%">
+          <div class="actions-container" fxLayout="row" fxFlexAlign="start center" fxLayoutGap="10px">
+            <input #file class="inputfile" id="upload-file" type="file"
+              (change)="fileBrowseHandler($event.target.files)" multiple="false" style="display:hidden;" />
+            <button nbButton outline status="success" size="tiny" (click)="file.click()">
+              <nb-icon icon="upload">{{ fileName ? fileName : "IMPORT" }}</nb-icon>
+            </button>
+            <button nbButton outline status="primary" size="tiny">
+              <nb-icon icon="refresh">Recharger</nb-icon>
+            </button>
+            <button nbButton outline status="info" size="tiny">
+              <nb-icon icon="flip-outline">CHANGER FICHIER</nb-icon>
+            </button>
+            <!-- <button [disabled]="!isValidMatch" nbButton size="tiny" (click)="testdata()">
+              Suivant
+            </button>
+            <button nbButton size="tiny" (click)="getValidatedData()">
+              Send
+            </button> -->
+
+          </div>
+        </div>
+        <div fxFlex="93%" fxLayout="column" fxLayoutAlign="center stretch" fxLayoutGap="10px">
+          <div fxLayout="row" fxLayoutAlign="space-between center">
+            <div>
+              <nb-checkbox [disabled]="rows?.length===0" [formControl]="headerForm" (checkedChange)="headerSelect()">
+                {{ !headerForm.value ? "Enlever" : "Ajouter" }} l'entête {{rows?.length}}
+              </nb-checkbox>
+            </div>
+            <div>
+              <div *ngIf="sheets?.length===1;else ListShetNameRef">
+                {{sheets[0]}}
+              </div>
+              <ng-template #ListShetNameRef>
+                <nb-select placeholder="Select Showcase" [(selected)]="selectedsheet"
+                  (selectedChange)="changeSheet($event)">
+                  <nb-option *ngFor="let sheet of sheets;" [value]="sheet">{{ sheet }}
+                  </nb-option>
+                </nb-select>
+              </ng-template>
+            </div>
+          </div>
+          <div class="dataTable">
+            <data-table #dataTableRef [displaySelects]="false" [dataSource]="rows" [header]="columns">
+            </data-table>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="DisplayDragbleArea" class="choose-files">
+        <div>
+          <div class="dragAndDrop" appDragNdrop (fileDropped)="onFileDropped($event)">
+            <input type="file" id="fileDropRef" #fileDropRef multiple (change)="fileBrowseHandler($event.target.files)"
+              title="" />
+            <h3>Glisser - déposer un fichier</h3>
+            <label for="fileDropRef">Parcourir</label>
+          </div>
+        </div>

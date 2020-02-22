@@ -1,0 +1,36 @@
+// :host + ng-deep is important here do not remove it sanaae ! :D
+
+:host ::ng-deep .step-content {
+  height: calc(100% - 3.5rem); // 3.5rem =  height action button (~57px ) 
+  padding: 1.25rem;
+
+}
+
+.container {
+  height: 100%;
+}
+
+.fade-in {
+  -webkit-animation: fade-in 1.5s both;
+  animation: fade-in 1.5s both;
+}
+
+@-webkit-keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

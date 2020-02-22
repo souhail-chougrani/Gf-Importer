@@ -1,0 +1,28 @@
+.template-hearder-container {
+  flex: 1 1 100%;
+
+  .header-name {
+    color: black;
+    text-align: center;
+    font-weight: bold;
+    font-size: 120%;
+    margin-bottom: 5px;
+  }
+
+  .select-container {
+    text-align: center;
+
+    nb-select {
+      width: 90%;
+      margin-bottom: 10;
+      margin: 0 auto;
+    }
+  }
+}
+
+
+
+span.required::after {
+  content: "*";
+  color: red;
+}

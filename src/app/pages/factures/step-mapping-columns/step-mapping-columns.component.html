@@ -1,0 +1,9 @@
+<div fxLayout="column" style="height: 100%;" fxLayoutGap="10px">
+
+
+  <div class="dataTable">
+    <!-- [ListColumns]="SelectHeader" -->
+    <data-table *ngIf="rows?.length" #dataTableRef [displaySelects]="true" [dataSource]="rows" [header]="columns">
+    </data-table>
+  </div>
+</div>

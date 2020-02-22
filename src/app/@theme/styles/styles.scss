@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap');
+
+// themes - our custom or/and out of the box themes
+@import 'themes';
+
+// framework component themes (styles tied to theme variables)
+@import '~@nebular/theme/styles/globals';
+@import '~@nebular/auth/styles/all';
+
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+@import '~bootstrap/scss/grid';
+
+// loading progress bar theme
+@import './pace.theme';
+
+@import './layout';
+@import './overrides';
+
+// install the framework and custom global styles
+@include nb-install() {
+
+  // framework global styles
+  @include nb-theme-global();
+  @include nb-auth-global();
+
+  @include ngx-layout();
+  // loading progress bar
+  @include ngx-pace-theme();
+
+  @include nb-overrides();
+}
+
+;
+
+
+// ngxdataTable
+.ngx-datatable.material {
+  // applaying our dynamic elevation look at:  (ngx-data-table/utilities/elevation.scss)
+  box-shadow: none !important;
+  border-radius: 10px;
+
+  &.fullscreen {
+    position: absolute !important;
+    height: auto !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+  }
+
+  .datatable-header {
+
+    .datatable-header-inner {
+      height: 100%;
+    }
+
+    .datatable-row-left {
+      background-image: none !important;
+    }
+
+    .datatable-row-center {
+
+
+      .datatable-header-cell {
+        padding: 0;
+
+        .sort-btn {
+          font-size: 200%;
+          color: nb-theme(color-primary-600);
+        }
+
+        .datatable-header-cell-template-wrap {
+          display: flex;
+          height: 100%;
+          justify-content: center;
+          align-items: center;
+        }
+
+        &:not(:last-child) {
+          border-right: 1px solid rgb(231, 231, 231);
+        }
+      }
+    }
+
+    .datatable-row-right {
+      background-image: none !important;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+  }
+
+  .datatable-body {
+
+    .datatable-body-row {
+      &.active {
+        .datatable-row-group {
+          background-color: rgb(236, 246, 255) !important;
+
+          &.datatable-row-center {
+            .datatable-body-cell {
+              .datatable-body-cell-label {
+                color: rgb(26, 52, 184);
+                font-weight: 600;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .datatable-row-left {
+      background-image: none !important;
+    }
+
+    .datatable-row-right {
+      // ( for adjust row Right after sytling vertical scroll bar! )
+      //changing scrollbar style directly affects .datatable-row-right
+      margin-left: 0.78rem;
+
+      .datatable-body-cell {
+
+        // should use more specific selector here !
+        .datatable-body-cell-label>.more-vertical-container {
+          transform: translate(-4px, -1px);
+        }
+      }
+    }
+  }
+}
